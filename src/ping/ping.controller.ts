@@ -6,7 +6,10 @@ import { createResponseBody, StatusType } from "../core/response";
 async function ping(_req: Request, res: Response, next: NextFunction) {
   try {
     await prisma.$queryRaw`SELECT 1`;
-    const data = createResponseBody(StatusType.Success, { time: Date() });
+    const date = new Date();
+    const data = createResponseBody(StatusType.Success, {
+      time: date.toJSON(),
+    });
 
     res.status(StatusCodes.OK);
     res.json(data);
