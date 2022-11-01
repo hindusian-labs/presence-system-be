@@ -19,4 +19,11 @@ async function error(
   res.json(body);
 }
 
+export class AlreadyCheckedOut extends Error {
+  constructor() {
+    super();
+    this.message = "User already checked out.";
+  }
+}
+
 export default error;
