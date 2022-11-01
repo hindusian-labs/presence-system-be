@@ -7,15 +7,27 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
 model User {
   uid       String   @id @db.VarChar(10)
   name      String   @db.VarChar(255)
-  createdAt DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime()
-  updatedAt DateTime @default(dbgenerated("NOW()")) @updatedAt() @map("updated_at") @db.DateTime()
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt DateTime @default(now()) @updatedAt() @map("updated_at") @db.Timestamptz()
+  Check     Check[]
 
   @@map("user")
+}
+
+model Check {
+  userUid String    @map("user_uid")
+  in      DateTime? @db.Timestamptz()
+  out     DateTime? @db.Timestamptz()
+  date    DateTime  @default(now()) @db.Date()
+  User    User?     @relation(fields: [userUid], references: [uid])
+
+  @@unique([userUid, date])
+  @@map("check")
 }
