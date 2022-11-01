@@ -16,7 +16,7 @@ type MinimalPrismaError = {
   meta?: unknown;
 };
 
-export function simplifyPrismaError(
+export function prismaErrorBuilder(
   error: PrismaClientKnownRequestError | NotFoundError
 ): MinimalPrismaError {
   if (error instanceof PrismaClientKnownRequestError) {

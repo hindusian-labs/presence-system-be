@@ -9,9 +9,10 @@ import * as service from "./user.service";
 import { createResponseBody, StatusType } from "../core/response";
 import { StatusCodes } from "http-status-codes";
 import {
+  NotFoundError,
   PrismaClientKnownRequestError,
 } from "@prisma/client/runtime";
-import { simplifyPrismaError } from "../core/prisma";
+import { prismaErrorBuilder } from "../core/prisma";
 import { betterAjvErrors } from "@apideck/better-ajv-errors";
 
 export async function store(req: Request, res: Response, next: NextFunction) {
@@ -29,7 +30,7 @@ export async function store(req: Request, res: Response, next: NextFunction) {
       return;
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
-        const data = simplifyPrismaError(error);
+        const data = prismaErrorBuilder(error);
         const body = createResponseBody(StatusType.Fail, data);
 
         res.status(StatusCodes.UNPROCESSABLE_ENTITY);
@@ -63,8 +64,11 @@ export async function fetch(req: Request, res: Response, next: NextFunction) {
     res.status(StatusCodes.OK);
     res.json(body);
   } catch (error) {
-    if (error instanceof PrismaClientKnownRequestError) {
-      const data = simplifyPrismaError(error);
+    if (
+      error instanceof PrismaClientKnownRequestError ||
+      error instanceof NotFoundError
+    ) {
+      const data = prismaErrorBuilder(error);
       const body = createResponseBody(StatusType.Fail, data);
 
       res.status(StatusCodes.NOT_FOUND);
@@ -82,8 +86,8 @@ export async function fetchAll(
   next: NextFunction
 ) {
   try {
-    const user = await service.fetchAll();
-    const body = createResponseBody(StatusType.Success, user);
+    const users = await service.fetchAll();
+    const body = createResponseBody(StatusType.Success, users);
 
     res.status(StatusCodes.OK);
     res.json(body);
@@ -108,7 +112,7 @@ export async function modify(req: Request, res: Response, next: NextFunction) {
       return;
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
-        const data = simplifyPrismaError(error);
+        const data = prismaErrorBuilder(error);
         const body = createResponseBody(StatusType.Fail, data);
 
         res.status(StatusCodes.UNPROCESSABLE_ENTITY);
@@ -143,7 +147,7 @@ export async function drop(req: Request, res: Response, next: NextFunction) {
     res.json(body);
   } catch (error) {
     if (error instanceof PrismaClientKnownRequestError) {
-      const data = simplifyPrismaError(error);
+      const data = prismaErrorBuilder(error);
       const body = createResponseBody(StatusType.Fail, data);
 
       res.status(StatusCodes.UNPROCESSABLE_ENTITY);
