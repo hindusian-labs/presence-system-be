@@ -2,10 +2,20 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  uid       String   @id @db.VarChar(10)
+  name      String   @db.VarChar(255)
+  createdAt DateTime @default(dbgenerated("NOW()")) @map("created_at") @db.DateTime()
+  updatedAt DateTime @default(dbgenerated("NOW()")) @updatedAt() @map("updated_at") @db.DateTime()
+
+  @@map("user")
 }
