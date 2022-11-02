@@ -2,6 +2,25 @@
 
 ---
 
+## Table of Contents
+
+- [Presence System API](#presence-system-api)
+  - [Table of Contents](#table-of-contents)
+  - [Base URL](#base-url)
+  - [Health Check](#health-check)
+  - [User](#user)
+    - [Store User](#store-user)
+    - [Fetch All Users](#fetch-all-users)
+    - [Modify User](#modify-user)
+    - [Fetch User](#fetch-user)
+    - [Delete User](#delete-user)
+  - [Check](#check)
+    - [Check In](#check-in)
+    - [Check Out](#check-out)
+    - [Fetch All Checkes](#fetch-all-checkes)
+
+---
+
 ## Base URL
 
 ```txt
@@ -33,7 +52,7 @@ Response
 
 ## User
 
-### Store
+### Store User
 
 Endpoint
 
@@ -64,7 +83,7 @@ Response
 }
 ```
 
-### Fetch All
+### Fetch All Users
 
 Endpoint
 
@@ -94,7 +113,7 @@ Response
 }
 ```
 
-### Modify
+### Modify User
 
 Endpoint
 
@@ -124,7 +143,7 @@ Response
 }
 ```
 
-### Fetch
+### Fetch User
 
 Endpoint
 
@@ -146,7 +165,7 @@ Response
 }
 ```
 
-### Delete
+### Delete User
 
 Endpoint
 
