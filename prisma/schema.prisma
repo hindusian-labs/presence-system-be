@@ -26,7 +26,7 @@ model Check {
   in      DateTime? @db.Timestamptz()
   out     DateTime? @db.Timestamptz()
   date    DateTime  @default(now()) @db.Date()
-  User    User?     @relation(fields: [userUid], references: [uid])
+  User    User?     @relation(fields: [userUid], references: [uid], onDelete: Cascade, onUpdate: Cascade)
 
   @@unique([userUid, date])
   @@map("check")
