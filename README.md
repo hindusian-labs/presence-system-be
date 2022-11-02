@@ -6,7 +6,6 @@
 
 - [Presence System API](#presence-system-api)
   - [Table of Contents](#table-of-contents)
-  - [Base URL](#base-url)
   - [Health Check](#health-check)
   - [User](#user)
     - [Store User](#store-user)
@@ -18,14 +17,6 @@
     - [Check In](#check-in)
     - [Check Out](#check-out)
     - [Fetch All Checkes](#fetch-all-checkes)
-
----
-
-## Base URL
-
-```txt
-http://34.101.216.127:8000
-```
 
 ---
 
