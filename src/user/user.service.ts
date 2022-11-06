@@ -5,7 +5,7 @@ import { User } from "@prisma/client";
 export async function store(payload: UserStoreRequest): Promise<User> {
   const user = await prisma.user.create({
     data: {
-      uid: payload.uid,
+      id: payload.id,
       name: payload.name,
     },
   });
@@ -13,10 +13,10 @@ export async function store(payload: UserStoreRequest): Promise<User> {
   return user;
 }
 
-export async function fetch(uid: string): Promise<User> {
+export async function fetch(id: string): Promise<User> {
   const user = await prisma.user.findFirstOrThrow({
     where: {
-      uid: uid,
+      id: id,
     },
   });
 
@@ -30,7 +30,7 @@ export async function fetchAll(): Promise<User[]> {
 }
 
 export async function modify(
-  uid: string,
+  id: string,
   payload: UserModifyRequest
 ): Promise<User> {
   const user = await prisma.user.update({
@@ -38,17 +38,17 @@ export async function modify(
       name: payload.name,
     },
     where: {
-      uid: uid,
+      id: id,
     },
   });
 
   return user;
 }
 
-export async function drop(uid: string): Promise<User> {
+export async function drop(id: string): Promise<User> {
   const user = await prisma.user.delete({
     where: {
-      uid: uid,
+      id: id,
     },
   });
 

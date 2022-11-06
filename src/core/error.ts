@@ -26,4 +26,11 @@ export class AlreadyCheckedOut extends Error {
   }
 }
 
+export class CheckedOutOnDifferentDay extends Error {
+  constructor() {
+    super();
+    this.message = "User checked out no different day.";
+  }
+}
+
 export default error;

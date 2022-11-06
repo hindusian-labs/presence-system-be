@@ -55,7 +55,7 @@ export async function store(req: Request, res: Response, next: NextFunction) {
 }
 
 export async function fetch(req: Request, res: Response, next: NextFunction) {
-  const uid = String(req.params.uid);
+  const uid = String(req.params.id);
 
   try {
     const user = await service.fetch(uid);
@@ -97,7 +97,7 @@ export async function fetchAll(
 }
 
 export async function modify(req: Request, res: Response, next: NextFunction) {
-  const uid = String(req.params.uid);
+  const uid = String(req.params.id);
   const validateBody = ajv.compile<UserModifyRequest>(SchemaUserModifyRequest);
   const reqBody = req.body;
   const validation = validateBody(reqBody);
@@ -107,7 +107,7 @@ export async function modify(req: Request, res: Response, next: NextFunction) {
       const data = await service.modify(uid, reqBody);
       const body = createResponseBody(StatusType.Success, data);
 
-      res.status(StatusCodes.CREATED);
+      res.status(StatusCodes.OK);
       res.json(body);
       return;
     } catch (error) {
@@ -137,7 +137,7 @@ export async function modify(req: Request, res: Response, next: NextFunction) {
 }
 
 export async function drop(req: Request, res: Response, next: NextFunction) {
-  const uid = String(req.params.uid);
+  const uid = String(req.params.id);
 
   try {
     const user = await service.drop(uid);

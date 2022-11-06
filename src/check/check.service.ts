@@ -1,48 +1,18 @@
 import { Check } from "@prisma/client";
-import { AlreadyCheckedOut } from "../core/error";
 import prisma from "../core/prisma";
+import { CheckResponse, checkResponseBuilder } from "./check.model";
 
-export async function check(uid: string, date: string | Date) {
-  const check = await fetch(uid, date);
-  console.log(check);
-  if (check == null) {
-    const check = await store(uid, date);
-
-    return check;
-  }
-
-  if (check && check.in == null && check.out == null) {
-    check.in = new Date();
-    check.out = null;
-  } else if (check && check.in != null && check.out == null) {
-    check.out = new Date();
-  } else {
-    throw new AlreadyCheckedOut();
-  }
-
-  return await prisma.check.update({
-    data: {
-      in: check.in,
-      out: check.out,
-    },
-    where: {
-      userUid_date: {
-        date: check.date,
-        userUid: check.userUid,
-      },
-    },
-  });
+export async function check(id: string, date: Date): Promise<CheckResponse> {
+  const check = await store(id, date);
+  return checkResponseBuilder(check);
 }
 
-export async function fetch(
-  uid: string,
-  date: string | Date
-): Promise<Check | null> {
+export async function fetch(id: string, date: Date): Promise<Check | null> {
   const check = await prisma.check.findUnique({
     where: {
-      userUid_date: {
+      userId_date: {
         date: date,
-        userUid: uid,
+        userId: id,
       },
     },
   });
@@ -50,20 +20,40 @@ export async function fetch(
   return check;
 }
 
-export async function store(uid: string, date: string | Date): Promise<Check> {
+export async function store(id: string, date: Date): Promise<Check> {
+  const dateOnly: Date = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    0,
+    0,
+    0,
+    0
+  );
+
+  const dateTime: Date = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    date.getHours(),
+    date.getMinutes(),
+    date.getSeconds(),
+    date.getMilliseconds()
+  );
+
   const check = await prisma.check.create({
     data: {
-      userUid: uid,
-      in: new Date(),
-      date: date,
+      userId: id,
+      in: dateTime,
+      date: dateOnly,
     },
   });
 
   return check;
 }
 
-export async function fetchAll(): Promise<Check[]> {
+export async function fetchAll(): Promise<CheckResponse[]> {
   const checkes = await prisma.check.findMany();
 
-  return checkes;
+  return checkes.map((check: Check) => checkResponseBuilder(check));
 }

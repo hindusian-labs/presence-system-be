@@ -8,12 +8,12 @@ import { prismaErrorBuilder } from "../core/prisma";
 import { AlreadyCheckedOut } from "../core/error";
 
 export async function check(req: Request, res: Response, next: NextFunction) {
-  const uid = String(req.params.uid);
-  console.log(uid);
+  const id = String(req.params.id);
+  console.log(id);
 
   try {
-    const user = await userService.fetch(uid);
-    const check = await checkService.check(user.uid, new Date());
+    const user = await userService.fetch(id);
+    const check = await checkService.check(user.id, new Date());
     const body = createResponseBody(StatusType.Success, check);
 
     res.status(StatusCodes.OK);

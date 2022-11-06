@@ -2,7 +2,7 @@ import express, { Express } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
-import routes from "./core/route";
+import routes from "./core/routes";
 import error from "./core/error";
 dotenv.config();
 

@@ -1,5 +1,5 @@
 export interface UserStoreRequest {
-  uid: string;
+  id: string;
   name: string;
 }
 

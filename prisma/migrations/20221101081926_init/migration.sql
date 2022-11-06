@@ -1,9 +1,0 @@
--- CreateTable
-CREATE TABLE "user" (
-    "uid" VARCHAR(10) NOT NULL,
-    "name" VARCHAR(255) NOT NULL,
-    "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "user_pkey" PRIMARY KEY ("uid")
-);

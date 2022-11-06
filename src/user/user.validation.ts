@@ -4,10 +4,10 @@ import { UserModifyRequest, UserStoreRequest } from "../user/user.model";
 export const SchemaUserStoreRequest: JSONSchemaType<UserStoreRequest> = {
   type: "object",
   properties: {
-    uid: { type: "string", maxLength: 10 },
+    id: { type: "string", maxLength: 10 },
     name: { type: "string", maxLength: 255 },
   },
-  required: ["name", "uid"],
+  required: ["name", "id"],
 };
 
 export const SchemaUserModifyRequest: JSONSchemaType<UserModifyRequest> = {
