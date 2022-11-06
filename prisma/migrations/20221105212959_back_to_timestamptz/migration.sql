@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "check" ALTER COLUMN "date" SET DATA TYPE TIMESTAMPTZ;
