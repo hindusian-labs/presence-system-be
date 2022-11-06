@@ -7,6 +7,7 @@
 - [Presence System API](#presence-system-api)
   - [Table of Contents](#table-of-contents)
   - [Health Check](#health-check)
+  - [Generate API Key](#generate-api-key)
   - [User](#user)
     - [Store User](#store-user)
     - [Fetch All Users](#fetch-all-users)
@@ -41,6 +42,27 @@ Response
 
 ---
 
+## Generate API Key
+
+Endpoint
+
+```text
+POST /key
+```
+
+Response
+
+```json
+{
+ "status": "success",
+ "data": {
+  "key": "7aecca35-c410-4b12-9c92-7cea39cdc40c"
+ }
+}
+```
+
+---
+
 ## User
 
 ### Store User
@@ -51,12 +73,18 @@ Endpoint
 POST /user
 ```
 
+Header
+
+```text
+X-API-Key: {{API-KEY}} => X:API-Key: "7aecca35-c410-4b12-9c92-7cea39cdc40c"
+```
+
 Body
 
 ```json
 {
-  "uid": "10M7ADJ1HU",
-  "name": "Muhammad Handi Rachmawan"
+ "id": "1R2EQ4W3",
+ "name": "Joy"
 }
 ```
 
@@ -64,13 +92,13 @@ Response
 
 ```json
 {
-  "status": "success",
-  "data": {
-    "uid": "10M7ADJ1HU",
-    "name": "Muhammad Handi Rachmawan",
-    "createdAt": "2022-11-01T10:40:29.687Z",
-    "updatedAt": "2022-11-01T10:40:29.687Z"
-  }
+ "status": "success",
+ "data": {
+  "id": "1R2EQ4W3",
+  "name": "Joy",
+  "createdAt": "2022-11-06T04:02:40.370Z",
+  "updatedAt": "2022-11-06T04:02:40.370Z"
+ }
 }
 ```
 
@@ -82,25 +110,25 @@ Endpoint
 GET /user
 ```
 
+Header
+
+```text
+X-API-Key: {{API-KEY}} => X:API-Key: "7aecca35-c410-4b12-9c92-7cea39cdc40c"
+```
+
 Response
 
 ```json
 {
-  "status": "success",
-  "data": [
-    {
-      "uid": "10M7ADJ1",
-      "name": "Muhammad Handi Rachmawan",
-      "createdAt": "2022-11-01T10:39:24.473Z",
-      "updatedAt": "2022-11-01T10:39:24.473Z"
-    },
-    {
-      "uid": "10M7ADJ1HU",
-      "name": "Muhammad Handi Rachmawan",
-      "createdAt": "2022-11-01T10:40:29.687Z",
-      "updatedAt": "2022-11-01T10:40:29.687Z"
-    }
-  ]
+ "status": "success",
+ "data": [
+  {
+   "id": "1R2EQ4W3",
+   "name": "Joy",
+   "createdAt": "2022-11-06T04:02:40.370Z",
+   "updatedAt": "2022-11-06T04:02:40.370Z"
+  }
+ ]
 }
 ```
 
@@ -109,14 +137,20 @@ Response
 Endpoint
 
 ```text
-PUT /user/:uid => /user/10M7ADJ1
+PUT /user/:id => PUT /user/1R2EQ4W3
+```
+
+Header
+
+```text
+X-API-Key: {{API-KEY}} => X:API-Key: "7aecca35-c410-4b12-9c92-7cea39cdc40c"
 ```
 
 Body
 
 ```json
 {
-  "name": "Handi Rachmawan"
+ "name":"Joyful"
 }
 ```
 
@@ -124,13 +158,13 @@ Response
 
 ```json
 {
-  "status": "success",
-  "data": {
-    "uid": "10M7ADJ1",
-    "name": "Handi Rachmawan",
-    "createdAt": "2022-11-01T10:39:24.473Z",
-    "updatedAt": "2022-11-02T06:01:37.462Z"
-  }
+ "status": "success",
+ "data": {
+  "id": "1R2EQ4W3",
+  "name": "Joyful",
+  "createdAt": "2022-11-06T04:02:40.370Z",
+  "updatedAt": "2022-11-06T04:11:08.193Z"
+ }
 }
 ```
 
@@ -139,20 +173,26 @@ Response
 Endpoint
 
 ```text
-GET /user/:uid => /user/10M7ADJ1
+GET /user/:id => GET /user/1R2EQ4W3
+```
+
+Header
+
+```text
+X-API-Key: {{API-KEY}} => X:API-Key: "7aecca35-c410-4b12-9c92-7cea39cdc40c"
 ```
 
 Response
 
 ```json
 {
-  "status": "success",
-  "data": {
-    "uid": "10M7ADJ1",
-    "name": "Handi Rachmawan",
-    "createdAt": "2022-11-01T10:39:24.473Z",
-    "updatedAt": "2022-11-02T06:01:37.462Z"
-  }
+ "status": "success",
+ "data": {
+  "id": "1R2EQ4W3",
+  "name": "Joyful",
+  "createdAt": "2022-11-06T04:02:40.370Z",
+  "updatedAt": "2022-11-06T04:11:08.193Z"
+ }
 }
 ```
 
@@ -161,20 +201,26 @@ Response
 Endpoint
 
 ```text
-DELETE /user/:uid => /user/10M7ADJ1
+DELETE /user/:id => DELETE /user/1R2EQ4W3
+```
+
+Header
+
+```text
+X-API-Key: {{API-KEY}} => X:API-Key: "7aecca35-c410-4b12-9c92-7cea39cdc40c"
 ```
 
 Response
 
 ```json
 {
-  "status": "success",
-  "data": {
-    "uid": "10M7ADJ1",
-    "name": "Handi Rachmawan",
-    "createdAt": "2022-11-01T10:39:24.473Z",
-    "updatedAt": "2022-11-02T06:01:37.462Z"
-  }
+ "status": "success",
+ "data": {
+  "id": "1R2EQ4W3",
+  "name": "Joyful",
+  "createdAt": "2022-11-06T04:02:40.370Z",
+  "updatedAt": "2022-11-06T04:11:08.193Z"
+ }
 }
 ```
 
@@ -187,46 +233,33 @@ Response
 Endpoint
 
 ```text
-POST /check/:uid
+POST /check/:id => POST /check/1R2EQ4W3
 
+```
+
+Header
+
+```text
+X-API-Key: {{API-KEY}} => X:API-Key: "7aecca35-c410-4b12-9c92-7cea39cdc40c"
 ```
 
 Response
 
 ```json
 {
-  "status": "success",
-  "data": {
-    "userUid": "1697AJKOU",
-    "in": "2022-11-02T06:16:05.514Z",
-    "out": null,
-    "date": "2022-11-02T00:00:00.000Z"
-  }
+ "status": "success",
+ "data": {
+  "userId": "1R2EQ4W3",
+  "in": "11:13:11",
+  "out": null,
+  "date": "11/6/2022"
+ }
 }
 ```
 
 ### Check Out
 
-Endpoint
-
-```text
-POST /check/:uid
-
-```
-
-Response
-
-```json
-{
-  "status": "success",
-  "data": {
-    "userUid": "1697AJKOU",
-    "in": "2022-11-02T06:16:05.514Z",
-    "out": "2022-11-02T06:18:12.186Z",
-    "date": "2022-11-02T00:00:00.000Z"
-  }
-}
-```
+TODO
 
 ### Fetch All Checkes
 
@@ -240,14 +273,14 @@ Response
 
 ```json
 {
-  "status": "success",
-  "data": [
-    {
-      "userUid": "1697AJKOU",
-      "in": "2022-11-02T06:16:05.514Z",
-      "out": "2022-11-02T06:18:12.186Z",
-      "date": "2022-11-02T00:00:00.000Z"
-    }
-  ]
+ "status": "success",
+ "data": [
+  {
+   "userId": "1R2EQ4W3",
+   "in": "11:13:11",
+   "out": null,
+   "date": "11/6/2022"
+  }
+ ]
 }
 ```
