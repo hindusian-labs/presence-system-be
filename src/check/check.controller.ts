@@ -9,7 +9,6 @@ import { AlreadyCheckedOut } from "../core/error";
 
 export async function check(req: Request, res: Response, next: NextFunction) {
   const id = String(req.params.id);
-  console.log(id);
 
   try {
     const user = await userService.fetch(id);
