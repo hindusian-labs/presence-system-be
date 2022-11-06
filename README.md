@@ -2,7 +2,7 @@
 
 ---
 
-Online documentation, can be found in [here](http://localhost:3000/docs.html).
+Online documentation, can be found in [here](http://34.101.216.127:8000/docs.html).
 
 ---
 
