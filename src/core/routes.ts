@@ -3,12 +3,14 @@ import * as check from "../check/check.controller";
 import * as user from "../user/user.controller";
 import ping from "../ping/ping.controller";
 import key, { keygen } from "../key/key.controller";
+import { docs } from "../docs/docs.controller";
 
 const routes = Router();
 
 routes.get("/", ping);
 
 routes.post("/key", keygen);
+routes.get("/docs.html", docs);
 
 routes.post("/user", key, user.store);
 routes.get("/user/:id", key, user.fetch);

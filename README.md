@@ -2,6 +2,10 @@
 
 ---
 
+Online documentation, can be found in [here](http://localhost:3000/docs.html).
+
+---
+
 ## Table of Contents
 
 - [Presence System API](#presence-system-api)
@@ -54,10 +58,10 @@ Response
 
 ```json
 {
- "status": "success",
- "data": {
-  "key": "7aecca35-c410-4b12-9c92-7cea39cdc40c"
- }
+  "status": "success",
+  "data": {
+    "key": "7aecca35-c410-4b12-9c92-7cea39cdc40c"
+  }
 }
 ```
 
@@ -83,8 +87,8 @@ Body
 
 ```json
 {
- "id": "1R2EQ4W3",
- "name": "Joy"
+  "id": "1R2EQ4W3",
+  "name": "Joy"
 }
 ```
 
@@ -92,13 +96,13 @@ Response
 
 ```json
 {
- "status": "success",
- "data": {
-  "id": "1R2EQ4W3",
-  "name": "Joy",
-  "createdAt": "2022-11-06T04:02:40.370Z",
-  "updatedAt": "2022-11-06T04:02:40.370Z"
- }
+  "status": "success",
+  "data": {
+    "id": "1R2EQ4W3",
+    "name": "Joy",
+    "createdAt": "2022-11-06T04:02:40.370Z",
+    "updatedAt": "2022-11-06T04:02:40.370Z"
+  }
 }
 ```
 
@@ -120,15 +124,15 @@ Response
 
 ```json
 {
- "status": "success",
- "data": [
-  {
-   "id": "1R2EQ4W3",
-   "name": "Joy",
-   "createdAt": "2022-11-06T04:02:40.370Z",
-   "updatedAt": "2022-11-06T04:02:40.370Z"
-  }
- ]
+  "status": "success",
+  "data": [
+    {
+      "id": "1R2EQ4W3",
+      "name": "Joy",
+      "createdAt": "2022-11-06T04:02:40.370Z",
+      "updatedAt": "2022-11-06T04:02:40.370Z"
+    }
+  ]
 }
 ```
 
@@ -150,7 +154,7 @@ Body
 
 ```json
 {
- "name":"Joyful"
+  "name": "Joyful"
 }
 ```
 
@@ -158,13 +162,13 @@ Response
 
 ```json
 {
- "status": "success",
- "data": {
-  "id": "1R2EQ4W3",
-  "name": "Joyful",
-  "createdAt": "2022-11-06T04:02:40.370Z",
-  "updatedAt": "2022-11-06T04:11:08.193Z"
- }
+  "status": "success",
+  "data": {
+    "id": "1R2EQ4W3",
+    "name": "Joyful",
+    "createdAt": "2022-11-06T04:02:40.370Z",
+    "updatedAt": "2022-11-06T04:11:08.193Z"
+  }
 }
 ```
 
@@ -186,13 +190,13 @@ Response
 
 ```json
 {
- "status": "success",
- "data": {
-  "id": "1R2EQ4W3",
-  "name": "Joyful",
-  "createdAt": "2022-11-06T04:02:40.370Z",
-  "updatedAt": "2022-11-06T04:11:08.193Z"
- }
+  "status": "success",
+  "data": {
+    "id": "1R2EQ4W3",
+    "name": "Joyful",
+    "createdAt": "2022-11-06T04:02:40.370Z",
+    "updatedAt": "2022-11-06T04:11:08.193Z"
+  }
 }
 ```
 
@@ -214,13 +218,13 @@ Response
 
 ```json
 {
- "status": "success",
- "data": {
-  "id": "1R2EQ4W3",
-  "name": "Joyful",
-  "createdAt": "2022-11-06T04:02:40.370Z",
-  "updatedAt": "2022-11-06T04:11:08.193Z"
- }
+  "status": "success",
+  "data": {
+    "id": "1R2EQ4W3",
+    "name": "Joyful",
+    "createdAt": "2022-11-06T04:02:40.370Z",
+    "updatedAt": "2022-11-06T04:11:08.193Z"
+  }
 }
 ```
 
@@ -247,13 +251,13 @@ Response
 
 ```json
 {
- "status": "success",
- "data": {
-  "userId": "1R2EQ4W3",
-  "in": "11:13:11",
-  "out": null,
-  "date": "11/6/2022"
- }
+  "status": "success",
+  "data": {
+    "userId": "1R2EQ4W3",
+    "in": "11:13:11",
+    "out": null,
+    "date": "11/6/2022"
+  }
 }
 ```
 
@@ -273,14 +277,14 @@ Response
 
 ```json
 {
- "status": "success",
- "data": [
-  {
-   "userId": "1R2EQ4W3",
-   "in": "11:13:11",
-   "out": null,
-   "date": "11/6/2022"
-  }
- ]
+  "status": "success",
+  "data": [
+    {
+      "userId": "1R2EQ4W3",
+      "in": "11:13:11",
+      "out": null,
+      "date": "11/6/2022"
+    }
+  ]
 }
 ```

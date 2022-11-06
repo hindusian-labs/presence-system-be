@@ -8,6 +8,7 @@ dotenv.config();
 
 const app: Express = express();
 
+app.set("view engine", "html");
 app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
