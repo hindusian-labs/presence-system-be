@@ -21,6 +21,7 @@ Online documentation, can be found in [here](http://34.101.216.127:8000/docs.htm
   - [Check](#check)
     - [Check In](#check-in)
     - [Check Out](#check-out)
+    - [Check Out Error](#check-out-error)
     - [Fetch All Checkes](#fetch-all-checkes)
 
 ---
@@ -254,16 +255,52 @@ Response
   "status": "success",
   "data": {
     "userId": "1R2EQ4W3",
-    "in": "11:13:11",
+    "in": "01:42:32",
     "out": null,
-    "date": "11/6/2022"
+    "date": "11/8/2022"
   }
 }
 ```
 
 ### Check Out
 
-TODO
+Endpoint
+
+```text
+POST /check/:id => POST /check/1R2EQ4W3
+
+```
+
+Header
+
+```text
+X-API-Key: {{API-KEY}} => X:API-Key: "7aecca35-c410-4b12-9c92-7cea39cdc40c"
+```
+
+Response
+
+```json
+{
+  "status": "success",
+  "data": {
+    "userId": "1R2EQ4W3",
+    "in": "01:42:32",
+    "out": "01:43:01",
+    "date": "11/8/2022"
+  }
+}
+```
+
+### Check Out Error
+
+Response
+
+```json
+{
+  "status": "fail",
+  "data": "User already checked out."
+}
+```
 
 ### Fetch All Checkes
 
@@ -281,9 +318,9 @@ Response
   "data": [
     {
       "userId": "1R2EQ4W3",
-      "in": "11:13:11",
-      "out": null,
-      "date": "11/6/2022"
+      "in": "01:42:32",
+      "out": "01:43:01",
+      "date": "11/8/2022"
     }
   ]
 }
