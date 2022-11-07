@@ -1,26 +1,9 @@
 import { Check } from "@prisma/client";
+import { AlreadyCheckedOut } from "../core/error";
 import prisma from "../core/prisma";
 import { CheckResponse, checkResponseBuilder } from "./check.model";
 
 export async function check(id: string, date: Date): Promise<CheckResponse> {
-  const check = await store(id, date);
-  return checkResponseBuilder(check);
-}
-
-export async function fetch(id: string, date: Date): Promise<Check | null> {
-  const check = await prisma.check.findUnique({
-    where: {
-      userId_date: {
-        date: date,
-        userId: id,
-      },
-    },
-  });
-
-  return check;
-}
-
-export async function store(id: string, date: Date): Promise<Check> {
   const dateOnly: Date = new Date(
     date.getFullYear(),
     date.getMonth(),
@@ -41,15 +24,38 @@ export async function store(id: string, date: Date): Promise<Check> {
     date.getMilliseconds()
   );
 
-  const check = await prisma.check.create({
-    data: {
+  const exist = await prisma.check.findFirst({
+    where: {
+      userId: id,
+      date: dateOnly,
+      NOT: {
+        out: null,
+      },
+    },
+  });
+
+  if (exist) {
+    throw new AlreadyCheckedOut();
+  }
+
+  const check = await prisma.check.upsert({
+    where: {
+      userId_date: {
+        date: dateOnly,
+        userId: id,
+      },
+    },
+    create: {
       userId: id,
       in: dateTime,
       date: dateOnly,
     },
+    update: {
+      out: dateTime,
+    },
   });
 
-  return check;
+  return checkResponseBuilder(check);
 }
 
 export async function fetchAll(): Promise<CheckResponse[]> {
